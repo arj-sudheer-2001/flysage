@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlySage - Flight Fare Predictor</title>
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <!-- CSS FILE -->
+    <link rel="stylesheet" href="../static/styles.css">
+
+</head>
+
+<body>
+
+    <section id="Main">
+          <h3>FlySage</h3>
+      </section>
+
+      <section id="Front">
+        <div class="page">
+            <p>Welcome to FlySage! Save money by forecasting airline ticket prices. Using advanced algorithms and historical data, the platform analyzes factors like flight routes, dates, and demand to predict future prices. This allows for smarter booking decisions and helps find the best time to buy tickets at the lowest possible price. Start planning the next trip with confidence and never overpay for a flight again!</p>
+        </div>
+
+        <div class="quote-section">
+            <p class="quote-text">"Travel makes one modest. You see what a tiny place you occupy in the world." – Gustave Flaubert</p>
+        </div>
+        
+    </section>
+
+
+      <section id="Predict">
+        <div class="border">
+            <form action="\predict" method="post">
+                <div class="container">
+                    <div class="col1">
+                      <div class="card">
+                        <div class="inputs">
+                          <h5 class="title">Departure Date</h5>
+                          <input type="datetime-local" name="Dep_Time" id="Dep_Time" required="required" value="{{ Dep_Time }}">
+                        </div>
+                      </div>
+
+                      <div class="card">
+                        <div class="inputs">
+                          <h5 class="title">Source</h5>
+                          <select name="Source" id="Source select1" required="required" class="select1"
+                            onchange="getSelectValue(this.value)">
+                            <option value="Kolkata" {% if Source == 'Kolkata' %}selected{% endif %}>Kolkata</option>
+                            <option value="Delhi" {% if Source == 'Delhi' %}selected{% endif %}>Delhi</option>
+                            <option value="Mumbai" {% if Source == 'Mumbai' %}selected{% endif %}>Mumbai</option>
+                            <option value="Chennai" {% if Source == 'Chennai' %}selected{% endif %}>Chennai</option>
+                            <option value="Banglore" {% if Source == 'Banglore' %}selected{% endif %}>Banglore</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="card">
+                        <div class="inputs">
+                          <h5 class="title">Stoppage</h5>
+                          <select name="stops" required="required">
+                            <option value="0" value="{{ Total_stops }}">Non-Stop</option>
+                            <option value="1" value="{{ Total_stops }}">1</option>
+                            <option value="2" value="{{ Total_stops }}">2</option>
+                            <option value="3" value="{{ Total_stops }}">3</option>
+                            <option value="4" value="{{ Total_stops }}">4</option>
+                          </select>
+                        </div>
+                      </div>
+          
+                    </div>
+
+                    <div class="col2">
+                        <div class="card">
+                          <div class="inputs">
+                            <h5 class="title">Arrival Date</h5>
+                            <input type="datetime-local" name="Arrival_Time" id="Arrival_Time" required="required" value="{{ Arrival_Time }}">
+                          </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="inputs">
+                              <h5 class="title">Destination</h5>
+                              <select name="Destination" id="Destination select2" required="required" class="select2">
+                                <option value="Cochin"  {% if Destination == 'Cochin' %}selected{% endif %}>Cochin</option>
+                                <option value="Delhi" {% if Destination == 'Delhi' %}selected{% endif %}>Delhi</option>
+                                <option value="Kolkata" {% if Destination == 'Kolkata' %}selected{% endif %}>Kolkata</option>
+                                <option value="Hyderabad" {% if Destination == 'Hyderabad' %}selected{% endif %}>Hyderabad</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="card">
+                            <div class="inputs">
+                              <h5 class="title">Select Airline</h5>
+                              <select name="airline" id="airline" required="required" class="select2">
+                                <option value="Jet Airways">Jet Airways</option>
+                                <option value="Air India">Air India</option>
+                                <option value="IndiGo">IndiGo</option>
+                                <option value="Air Asia">Air Asia</option>
+                                <option value="GoAir">GoAir</option>
+                                <option value="SpiceJet">SpiceJet</option>
+                                <option value="Vistara">Vistara</option>
+                                <option value="Multiple carriers">Multiple carriers</option>
+                                <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+                                <option value="Jet Airways Business">Jet Airways Business</option>
+                                <option value="Vistara Premium economy">Vistara Premium economy</option>
+                                <option value="Trujet">Trujet</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+              
+                      </div>
+
+                      <center>
+                        <input type="submit" value="Predict">
+                        <button type="button" id="clear-btn" onclick="clearForm()">Clear</button>
+                        <br>
+                        <br>
+                        <div id="prediction-section">
+                        <h4>{{ prediction_text }}</h4>
+                        </div>
+                        <button id="insights-btn" type="button" onclick="toggleInsights()" style="display: inline;">Show Insights</button>
+                        <div id="graph-container" style="display: none;" class="insights-box">
+                        <div class="insights-content">
+                        {% if graph_html %}
+                            {{ graph_html | safe }}
+                        {% endif %}
+                        </div>
+                        <button type="button" onclick="toggleInsights()">Close</button>
+                        </div>
+                      </center>
+                      
+                  </div>
+                  </form>
+                  </div>
+                </section>
+
+                <footer id="Footer">
+
+                    <div class="footer">
+                      <h3> Flight Price Prediction </h3>
+                      <img src="../static/footer-icon.png" alt="footer-icon">
+                    </div>
+                
+                    <div class="last">
+                      <p>A Machine learning flight price prediction web-application.</p>
+                    </div>
+                
+                  </footer>
+                
+                  <script>
+                    function getSelectValue(select1) {
+                      if (select1 != '') {
+                        $(".select2 option[value='" + select1 + "']").hide();
+                        $(".select2 option[value!='" + select1 + "']").show();
+                      }
+                    }
+
+                    // Function to disable past datetime for departure and arrival
+                    function disablePastDateTime() {
+                    const now = new Date();
+                    const formattedDateTime = now.toISOString().slice(0, 16); 
+                    document.getElementById("Dep_Time").setAttribute("min", formattedDateTime);
+                    document.getElementById("Arrival_Time").setAttribute("min", formattedDateTime);
+                    }
+                    window.onload = disablePastDateTime;
+
+                    //Function to delete dates before the arrival date in departure
+                    const arrivalDateInput = document.getElementById("Arrival_Time");
+                    const departureDateInput = document.getElementById("Dep_Time");
+                    departureDateInput.addEventListener("change", function() {
+                    const departureDate = new Date(departureDateInput.value);
+                    const minArrivalDate = departureDate.toISOString().slice(0, 16);
+                    arrivalDateInput.min = minArrivalDate;
+                  })
+
+                  //Toggle button for insights
+                  function toggleInsights() {
+                    var insightsContainer = document.getElementById("graph-container");
+                    var button = document.getElementById("insights-btn");
+
+                    if (insightsContainer.style.display === "none" || insightsContainer.style.display === "") {
+                      insightsContainer.style.display = "block"; 
+                      button.textContent = "Hide Insights"; 
+                    } else {
+                      insightsContainer.style.display = "none"; 
+                      button.textContent = "Show Insights"; 
+                    }
+                  }
+
+                  //Scroll to the prediction section on clicking the predict button
+                  window.onload = function() {
+                    disablePastDateTime();
+                    const predictionText = "{{ prediction_text }}";
+                    if (predictionText) {
+                      document.getElementById("prediction-section").scrollIntoView({ behavior: "smooth" });
+                    }
+                  };
+
+                  function clearForm() {
+                    // Clear all input fields
+                    document.getElementById("Dep_Time").value = "";
+                    document.getElementById("Arrival_Time").value = "";
+                    document.getElementById("Source").value = "";
+                    document.getElementById("Destination").value = "";
+                    document.getElementById("airline").value = "";
+                    document.getElementById("stops").value = "0";
+
+                    document.getElementById("prediction-section").innerHTML = "<h4></h4>";
+                    document.getElementById("graph-container").style.display = "none";
+                    document.getElementById("insights-btn").textContent = "Show Insights";
+
+                    
+}
+
+                  </script>
+
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+
+</body>
+
+</html>

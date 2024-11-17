@@ -1,0 +1,502 @@
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
+
+/*    Home page  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+
+
+body {
+  width: 100%;
+  background-color: #fff;
+  font-family: "Poppins", serif;
+  zoom: 80%;
+}
+
+/*Description */
+
+#Front {
+    height: 110vh;
+    width: auto;
+    background-position: top 10% right 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#Front .page {
+    margin: 60px;
+}
+
+.page h2 {
+    margin: 40px 0;
+    font-size: 44px;
+    text-align: center;
+}
+
+.page p {
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: justify;
+}
+
+
+/* Styling for the description paragraph */
+.page p {
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: justify;
+    line-height: 1.8; /* Increased line height for better readability */
+    color: #333; /* Dark color for good contrast */
+    margin: 0 0 10px; /* Added some margin for spacing */
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle text shadow for depth */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for emphasis */
+    padding: 20px; /* Padding for a more comfortable reading experience */
+    border-radius: 8px; /* Slightly rounded corners for a modern look */
+    max-width: 80%; /* Restrict width to avoid too wide text blocks */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover effect to make the paragraph interactive */
+.page p:hover {
+    background-color: rgba(255, 255, 255, 1); /* Solid background on hover */
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Adds depth on hover */
+}
+
+/* Optional: Adding a decorative border */
+.page p::before {
+    content: "";
+    display: block;
+    height: 5px;
+    width: 50px;
+    background-color: #333; /* A subtle divider at the top */
+    margin-bottom: 20px;
+}
+
+/* Container for the quote */
+.quote-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0 0;
+    background-color: rgba(255, 255, 255, 0.9); /* Soft background */
+    border-left: 5px solid #333; /* Left border for emphasis */
+    border-radius: 8px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    max-width: 80%;
+    margin: auto;
+}
+
+/* Styling for the quote text */
+.quote-text {
+    font-size: 24px;
+    font-style: italic;
+    color: #333;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    text-align: justify;
+    padding: 10px 20px;
+    position: relative;
+}
+
+/* Decorative quote marks */
+.quote-text::before {
+    content: '“';
+    font-size: 36px;
+    color: #333;
+    position: absolute;
+    top: -10px;
+    left: -20px;
+}
+
+.quote-text::after {
+    content: '”';
+    font-size: 36px;
+    color: #333;
+    position: absolute;
+    bottom: -10px;
+    right: -20px;
+}
+
+
+/* Main Start */
+#Main {
+  padding-top: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(45deg, #084c61, #db504a, #e3b505);
+  background-size: 500% 500%;
+  animation: change-gradient 5s ease-in-out infinite;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.13);
+  z-index: 997;
+  position: sticky;
+  top: 0;
+  left: 0%;
+}
+
+@keyframes change-gradient {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+
+/* header */
+
+#Main h3 {
+  margin: 10px 30px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.btn {
+  background-color: #333;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color .4s linear;
+}
+
+.success {
+  border-radius: 10px;
+  border: 1px solid #333;
+  padding: 10px 15px;
+  color: #fff;
+  transition: color .4s linear;
+}
+
+.success:hover {
+  background-color: #f9f9ff;
+  color: #222;
+  border: 1px solid #f9f9ff;
+  transition: color .4s linear;
+}
+
+
+/* Landing Page  */
+
+
+#Predict {
+    background-image: url("../static/flight.jpg");
+    height: 120vh;
+    width: auto;
+    background-size: cover;
+    background-position: top 120% right 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #Predict .border {
+    margin: 40px;
+    background-color: #fff;
+    border: 1px solid #333;
+    width: 50%;
+    border-radius: 20px;
+    box-shadow: 0px 6px 30px #9c9c9c;
+    padding: 20px;
+  }
+  
+  #Predict .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .col1, .col2 {
+    width: 45%;
+  }
+  
+  .col1 .inputs, .col2 .inputs {
+    padding: 20px;
+  }
+  
+  .col1 h5, .col2 h5 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card input, .card select {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  
+  .card input[name=departure], .card input[name=arrival] {
+    padding: 12px 20px;
+  }
+  
+  .card select[name=source], .card select[name=destination], .card select[name=stopage], .card select[name=airline] {
+    padding: 12px 20px;
+  }
+  
+  input[type=submit] {
+    margin-top: 20px;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  input[type=submit]:hover {
+    background: #222;
+  }
+
+  #insights-btn {
+    margin-top: 20px;
+    padding: 10px 15px;  /* Smaller padding than the submit button */
+    text-align: center;
+    font-size: 16px;  /* Slightly smaller font size */
+    font-weight: 600;
+    color: #fff;
+    background: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    width: auto;  /* Button will only be as wide as needed */
+    display: inline-block;
+  }
+  
+  #insights-btn:hover {
+    background: #222;
+  }
+  
+  #clear-btn {
+    margin-top: 20px;
+    padding: 10px 15px;  /* Smaller padding than the submit button */
+    text-align: center;
+    font-size: 16px;  /* Slightly smaller font size */
+    font-weight: 600;
+    color: #fff;
+    background: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    width: auto;  /* Button will only be as wide as needed */
+    display: inline-block;
+}
+
+#clear-btn:hover {
+    background: #222;
+}
+
+
+  h4 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+
+/*  Footer  */
+
+
+#Footer {
+  margin-top: 40px;
+  justify-content: center;
+  position: bottom;
+  background: #111;
+  width: 100%;
+  /* padding: 5px; */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.13);
+  z-index: 100;
+}
+
+
+.footer {
+  padding: 20px 20px 0 20px;
+  position: relative;
+  text-align: center;
+}
+
+.footer h3 {
+  margin: 10px 40px;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+}
+
+.footer p {
+  margin: 10px 40px;
+  font-size: 18px;
+  color: silver;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+
+/*social -media*/
+
+
+.socials {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.socials li {
+  margin: 10px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  /* border: 1px solid #fff; */
+}
+
+.socials a {
+  text-decoration: none;
+  color: #fff;
+  padding: 5px 0;
+}
+
+.socials a i {
+  font-size: 38px;
+  transition: color .3s linear;
+}
+
+.socials a:hover .fa {
+  color: #8490ff;
+  transition: color .1s linear;
+}
+
+
+/* Text */
+
+
+.last {
+  padding: 20px;
+  margin: 0;
+}
+
+.last p {
+  font-size: 18px;
+  letter-spacing: .5px;
+  text-align: center;
+  color: gray;
+}
+
+.last span {
+  color: #8490ff;
+}
+
+/* Toggle Button */
+/* Initial hidden state for insights container */
+#graph-container {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.insights-content {
+  margin-bottom: 10px;
+}
+
+/* Button to Close the Insights Box */
+/* Initial hidden state for insights container */
+#graph-container {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.insights-content {
+  margin-bottom: 10px;
+}
+
+/* Button to Close the Insights Box */
+#graph-container {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  height: 80%;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.insights-content {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#graph-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#graph-container button:hover {
+  background-color: #0056b3;
+}
